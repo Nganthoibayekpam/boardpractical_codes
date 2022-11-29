@@ -191,3 +191,34 @@ def Readfile():
             x = i.readline()
 Readfile()
 
+#13 Write a function Count_Rec() in Python that would read contents of the file
+#“SCHOOL.DAT” and display the details of those students whose percentage is below 33%.
+#Also display the number of students scoring below 33%
+import pickle
+f=open("student.dat", "wb")
+n = int(input("Enter number of records: "))
+for i in range(n):
+    sname= input("Enter Student name: ")
+    srollnm= int(input("Enter student roll no.: "))
+    smarks= int(input("Enter marks in %: "))
+    rec = ['sname','srollnm','smarks']
+    pickle.dump(rec, f)
+def countrec():
+    count = 0
+    f = open("STUDENT.dat", "rb")
+    try:
+        while True:
+            t = pickle.load(f)
+            if t[2]>33:
+                count=count+1
+                print(t)
+    except EOFError:
+        print("Number student with per  greater than 33%", count)
+        f.close()
+def disp_rec(a):
+    f = open("STUDENT.dat", "rb")
+    while True:
+        t = pickle.load(f)
+        if t[0][0]==a:
+            print(t)
+countrec()
