@@ -1,4 +1,6 @@
-#1
+#1 Write the definition of a method countnow(places) to find and display those place names, in which there are more than 7 characters.
+#For example: If the list places contains. ["MELBOURNE", "TOKYO", "PINKCITY", "BEIJING", "SUNCITY]
+
 '''def countnow(places):
     for x in places:
         if len(x)>7:
@@ -6,7 +8,9 @@
 places = ["Melbourne", "Tokyo", "Pinkcity", "Beijing", "Suncity"]
 countnow(places)'''
 
-#2
+#2 Write a function countmy() in python to read the text file "DATA.TXT" and count the
+#number of times "my" occurs in the file.
+
 '''def countmy():
     f= open("data.txt", "r")
     count =0
@@ -19,7 +23,9 @@ countnow(places)'''
     f.close()
 countmy()'''
 
-#3
+#3 Write a method in python to read lines from a text file MYNOTES.TXT and display those
+#lines which start with alphabets 'K'.
+
 '''def dispk():
     f= open("mynotes.txt", "r")
     l= f.readlines()
@@ -29,7 +35,7 @@ countmy()'''
     f.close()
 dispk()'''
 
-#4
+#4 Write a program that copies a text file "source.txt" onto "target.txt" barring the lines starting with “A”.
 '''s = open("data.txt","r")
 t = open("realreal.txt", "w")
 d = s.readlines()
@@ -39,7 +45,10 @@ for i in d:
 s.close()
 t.close()'''
 
-#5
+#5 Write a function SRCount() in Python, which should read each character of a text file
+#STORY.TXT, should count and display the occurrence of alphabets S and R (including
+#small cases s and r too)
+
 '''def srcnt():
     f = open("story.txt", "r")
     S = 0
@@ -55,7 +64,9 @@ t.close()'''
     f.close()
 srcnt()'''
 
-#6
+#6 Write a function Display( ) in python to read lines from a text file “XYZ.txt” and
+#display those words, which are greater than or equal to 3 characters
+
 '''def display():
     file = open("data.txt", "r")
     data = file.read()
@@ -66,7 +77,9 @@ srcnt()'''
     file.close()
 display()'''
 
-#7
+#7 Write a function count_is_as() in Python that counts the number of “is” and “as” words
+#present in a text file “STORY.TXT”.
+
 '''def count_AS_IS():
     f=open('story.txt', 'r')
     count=0
@@ -78,7 +91,7 @@ display()'''
     f.close()
 count_AS_IS()'''
 
-#8
+#8 Read a text file and display the number of vowels/consonants/uppercase/lowercase characters in the file.
 '''f=open("xyz.txt", 'r', encoding="utf8")
 lc=0
 uc=0
