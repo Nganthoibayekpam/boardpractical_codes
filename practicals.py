@@ -1,17 +1,17 @@
 #1 Write the definition of a method countnow(places) to find and display those place names, in which there are more than 7 characters.
 #For example: If the list places contains. ["MELBOURNE", "TOKYO", "PINKCITY", "BEIJING", "SUNCITY]
 
-'''def countnow(places):
+def countnow(places):
     for x in places:
         if len(x)>7:
             print (x)
 places = ["Melbourne", "Tokyo", "Pinkcity", "Beijing", "Suncity"]
-countnow(places)'''
+countnow(places)
 
 #2 Write a function countmy() in python to read the text file "DATA.TXT" and count the
 #number of times "my" occurs in the file.
 
-'''def countmy():
+def countmy():
     f= open("data.txt", "r")
     count =0
     x= f.read()
@@ -21,35 +21,35 @@ countnow(places)'''
             count= count+1
     print ("my occurs", count, "times")
     f.close()
-countmy()'''
+countmy()
 
 #3 Write a method in python to read lines from a text file MYNOTES.TXT and display those
 #lines which start with alphabets 'K'.
 
-'''def dispk():
+def dispk():
     f= open("mynotes.txt", "r")
     l= f.readlines()
     for i in l:
         if i[0] =='k':
             print (i, end="")
     f.close()
-dispk()'''
+dispk()
 
 #4 Write a program that copies a text file "source.txt" onto "target.txt" barring the lines starting with “A”.
-'''s = open("data.txt","r")
+s = open("data.txt","r")
 t = open("realreal.txt", "w")
 d = s.readlines()
 for i in d:
     if i[0] == "@":
         t.write(i)
 s.close()
-t.close()'''
+t.close()
 
 #5 Write a function SRCount() in Python, which should read each character of a text file
 #STORY.TXT, should count and display the occurrence of alphabets S and R (including
 #small cases s and r too)
 
-'''def srcnt():
+def srcnt():
     f = open("story.txt", "r")
     S = 0
     R = 0
@@ -62,12 +62,12 @@ t.close()'''
     print ("Occurence of s in story: ", S)
     print ("Occurence of r in story: ", R)
     f.close()
-srcnt()'''
+srcnt()
 
 #6 Write a function Display( ) in python to read lines from a text file “XYZ.txt” and
 #display those words, which are greater than or equal to 3 characters
 
-'''def display():
+def display():
     file = open("data.txt", "r")
     data = file.read()
     bag = data.split()
@@ -75,12 +75,12 @@ srcnt()'''
         if len(i) >= 3:
             print(i)
     file.close()
-display()'''
+display()
 
 #7 Write a function count_is_as() in Python that counts the number of “is” and “as” words
 #present in a text file “STORY.TXT”.
 
-'''def count_AS_IS():
+def count_AS_IS():
     f=open('story.txt', 'r')
     count=0
     n=f.read()
@@ -89,10 +89,10 @@ display()'''
             count=count+1
     print("as & is occurs",count,"times")
     f.close()
-count_AS_IS()'''
+count_AS_IS()
 
 #8 Read a text file and display the number of vowels/consonants/uppercase/lowercase characters in the file.
-'''f=open("xyz.txt", 'r', encoding="utf8")
+f=open("xyz.txt", 'r', encoding="utf8")
 lc=0
 uc=0
 vow=0
@@ -110,7 +110,7 @@ for i in f.read():
 print("vowels: ",vow)
 print("consonants: ",cons)
 print("uppercase: ",uc)
-print("lowercase: ",lc)'''
+print("lowercase: ",lc)
 
 #9 Remove all the lines that contain the character ‘a’ in a file and write it to another file.
 f=open("harry.txt", 'r')
@@ -147,3 +147,47 @@ while True:
        break
 if flag==False:
    print("This Roll Number does not exist")
+
+#11 Create a binary file with roll number, name and marks. Input a roll number and update the marks.
+import pickle
+def insertRec():
+    rollno = int(input('Enter roll number: '))
+    name = input('Enter Name: ')
+    marks = int(input('Enter Marks: '))
+    rec = {'Rollno':rollno,'Name':name,'Marks':marks}
+    f = open('history.dat','ab')
+    pickle.dump(rec,f)
+    f.close()
+insertRec()
+
+#12 consider a binary file employee.dat containing details such as
+#empno:ename:salary(separator ':') write a python function to display details of those
+#employees who are earning between 20000 and 30000(both values inclusive)
+import pickle
+f=open("employee.dat","wb+")
+employee=[]
+eno=int(input("Number of employee datas: "))
+for i in range(eno):
+    empno=int(input("Employee number: "))
+    ename=input("Employee name: ")
+    salary=int(input("Salary: "))
+    p=[empno,ename,salary]
+    rec=employee.append(p)
+    pickle.dump(rec,f)
+try:
+    while True:
+        j=pickle.load(f)
+        if j[3]>=20000 and j[3]<=30000:
+            print(j,sep=":")
+except EOFError:
+    f.close()
+f=open("employee.dat","rb+")
+def Readfile():
+    i = open("employee.dat","rb+")
+    x = i.readline()
+    while(x):
+        if (20000>=float(x[2])<=30000):
+            print(x, sep=":")
+            x = i.readline()
+Readfile()
+
