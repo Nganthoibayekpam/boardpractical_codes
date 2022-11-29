@@ -79,7 +79,7 @@ display()'''
 count_AS_IS()'''
 
 #8
-f=open("xyz.txt", 'r')
+'''f=open("xyz.txt", 'r', encoding="utf8")
 lc=0
 uc=0
 vow=0
@@ -97,5 +97,5 @@ for i in f.read():
 print("vowels: ",vow)
 print("consonants: ",cons)
 print("uppercase: ",uc)
-print("lowercase: ",lc)
+print("lowercase: ",lc)'''
 
