@@ -112,3 +112,38 @@ print("consonants: ",cons)
 print("uppercase: ",uc)
 print("lowercase: ",lc)'''
 
+#9 Remove all the lines that contain the character ‘a’ in a file and write it to another file.
+f=open("harry.txt", 'r')
+fh=open("openall.txt", 'w')
+a = []
+l=f.readlines()
+for i in l:
+    if 'a' in i:
+        a += [i]
+fh.writelines(a)
+f.close()
+fh.close()
+
+#10  Create a binary file with name and roll number. Search for a given roll number and display the name, if not found display appropriate message
+import pickle
+f=open("student.dat", "wb")
+n = int(input("Enter number of records: "))
+for i in range(n):
+    sname= input("Enter Student name: ")
+    srollnm= int(input("Enter student roll no.: "))
+    rec = {'sname':sname, 'srollnm':srollnm}
+    pickle.dump(rec, f)
+f.close()
+f=open("student.dat", "rb")
+k=int(input("Enter the Roll Number: "))
+flag = False
+while True:
+   try:
+       x=pickle.load(f)
+       if x[1]==k:
+           print("Name: ", x[0])
+           flag = True
+   except EOFError:
+       break
+if flag==False:
+   print("This Roll Number does not exist")
