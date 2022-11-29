@@ -140,9 +140,9 @@ flag = False
 while True:
    try:
        x=pickle.load(f)
-       if x[1]==k:
-           print("Name: ", x[0])
-           flag = True
+       if x['srollnm']==k:
+        print("Name: ",x['sname'])
+        flag = True
    except EOFError:
        break
 if flag==False:
