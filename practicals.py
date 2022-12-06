@@ -209,16 +209,20 @@ def countrec():
     try:
         while True:
             t = pickle.load(f)
-            if t[2]>33:
+            if t[2]<33:
                 count=count+1
                 print(t)
-    except EOFError:
+    except:
         print("Number student with per  greater than 33%", count)
         f.close()
 def disp_rec(a):
     f = open("STUDENT.dat", "rb")
-    while True:
-        t = pickle.load(f)
-        if t[0][0]==a:
-            print(t)
+    try:
+        while True:
+            item = pickle.load(file)
+            if item['sname'][0] == a:
+                print(item)
+    except:
+        f.close() 
 countrec()
+disp_rec('L')
