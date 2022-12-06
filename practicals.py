@@ -196,34 +196,52 @@ Readfile()
 #“SCHOOL.DAT” and display the details of those students whose percentage is below 33%.
 #Also display the number of students scoring below 33%
 import pickle
-f=open("student.dat", "wb")
-n = int(input("Enter number of records: "))
+stu={}
+sf=open('student.dat','wb')
+n= int(input("Enter number of records: "))
 for i in range(n):
-    sname= input("Enter Student name: ")
-    srollnm= int(input("Enter student roll no.: "))
-    smarks= int(input("Enter marks in %: "))
-    rec = ['sname','srollnm','smarks']
-    pickle.dump(rec, f)
-def countrec():
-    count = 0
-    f = open("STUDENT.dat", "rb")
+    rno= int(input("Enter roll number: "))
+    name= input("Enter name: ")
+    marks= float(input("Enter marks: "))
+    stu['Rollno']= rno
+    stu['Name']= name
+    stu['Marks']= marks
+    pickle.dump(stu, sf)
+sf.close()
+
+print("Searching... please wait..")
+def countstu():
+    with open('student.dat', 'rb') as fin:
+        stu=pickle.load(fin)
+        count=0
+        found = False
+        if stu['Marks']>33:
+            count = count +1
+            print(stu)
+            print("Students with percentage greater than 33: ", count)
+            found=True 
+    if found==False:
+        print('No student scored more than 33%.')
+    else:
+        print("Search successful")
+countstu()
+
+
+def disp_rec():
+    fil=open('student.dat', 'rb')
+    found=False
+    searchkeys = input("Enter aplhabet:")
     try:
+        print ("Searching..")
         while True:
-            t = pickle.load(f)
-            if t[2]<33:
-                count=count+1
-                print(t)
-    except:
-        print("Number student with per  greater than 33%", count)
-        f.close()
-def disp_rec(a):
-    f = open("STUDENT.dat", "rb")
-    try:
-        while True:
-            item = pickle.load(file)
-            if item['sname'][0] == a:
-                print(item)
-    except:
-        f.close() 
-countrec()
-disp_rec('L')
+            stu=pickle.load(fil)
+            if stu['Name'] in searchkeys:
+                print(stu)
+                found=True
+    except EOFError:
+        if found == False:
+            print ("No such student enrolled here :(")
+        else:
+            print("Search successful! :)")
+        fil.close()
+disp_rec()
