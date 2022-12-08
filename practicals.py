@@ -261,32 +261,29 @@ def write_file():
 		Company = input("Enter company name: ")
 		Price = int(input("Enter price: "))
 		pickle.dump([ItemNo, Item_Name, Company, Price], f)
-		op = input("Do you want to continue? (y or n)")
+		op = input("Do you want to continue? (yes or no) ")
 	f.close()
 
 print("entering company details..")
 write_file()
 
 def CountRec(company):
-    f=open("store.dat","rb")
-    p=[]
-    h={}
+    count = 0
+    file = open("store.dat", "rb")
     try:
         while True:
-            g=pickle.load(f)
-            p.append(g)
-    except EOFError:
-        for i in p:
-            if i[2] in h:
-                h[i[2]]=h[i[2]]+1
-            else:
-                h[i[2]]=1
-        n=h.items()
-        for i in n:
-            if i[0]==company:
-                print('Company name:',i[0],"Count ",i[1])
-    f.close()
+            item = pickle.load(file)
+            if item[2] == company:
+                count += 1
+    except:
+        print("Count:", count)
+        file.close()
+
+
 def AddRecord(list):
-    fh=open("store.dat","wb")
-    g=pickle.dump(list,f)
-    fh.close()
+    file = open("store.dat", "ab")
+    pickle.dump(list, file)
+    file.close()
+
+CountRec('Cartier')
+AddRecord(105, 'Silver chain', 'Chanel', 20000)
