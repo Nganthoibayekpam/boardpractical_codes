@@ -267,23 +267,212 @@ def write_file():
 print("entering company details..")
 write_file()
 
+import pickle
 def CountRec(company):
-    count = 0
-    file = open("store.dat", "rb")
+    f=open("store.dat","rb")
+    p=[]
+    h={}
     try:
         while True:
-            item = pickle.load(file)
-            if item[2] == company:
-                count += 1
-    except:
-        print("Count:", count)
-        file.close()
-
-
+            g=pickle.load(f)
+            p.append(g)
+    except EOFError:
+        for i in p:
+            if i[2] in h:
+                h[i[2]]=h[i[2]]+1
+            else:
+                h[i[2]]=1
+        n=h.items()
+        for i in n:
+            if i[0]==company:
+                print('Company name:',i[0],"Count",i[1])
+    f.close()
 def AddRecord(list):
-    file = open("store.dat", "ab")
-    pickle.dump(list, file)
-    file.close()
+    fh=open("store.dat","wb")
+    g=pickle.dump(list,f)
+    fh.close()
 
-CountRec('Cartier')
-AddRecord(105, 'Silver chain', 'Chanel', 20000)
+#15
+import pickle
+def WriteCSV(Username,password):
+    fh=open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv","ab")
+    l=[Username,password]
+    pickle.dump(l,fh)
+    fh.close()
+def ReadCSV():
+    f=open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv","rb")
+    try:
+        while True:
+            p=pickle.load(f)
+            print(p)
+    except EOFError:
+        f.close()
+s=int(input('Enter no of accounts: '))
+for i in range(s):
+    usn=input("Username: ")
+    passw=input("password: ")
+    WriteCSV(usn,passw)
+
+ReadCSV()
+
+import csv
+def WriteCSV():
+    fh=open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv","w")
+    n=csv.writer(fh)
+    r=int(input("Enter number of accounts: "))
+    for i in range(r):
+        print("Student record",i+1)
+        usn=input("Enter your Username: ")
+        passw=input("Enter your password: ")
+        rec=[usn,passw]
+        n.writerow(rec)
+    fh.close()
+WriteCSV()
+def ReadCSV(UserName):
+    with open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv", newline="\r\n") as fh:
+        n=csv.reader(fh)
+        for r in n:
+            if r[0]==UserName:
+                print('Username:',UserName,"Password:",r[1])
+        fh.close()
+ch=input("Enter username to be searched: ")
+ReadCSV(ch)
+
+#16
+import csv
+def WriteCSV():
+    fh=open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv","w")
+    n=csv.writer(fh)
+    r=int(input("Enter number of accounts: "))
+    for i in range(r):
+        print("Student record",i+1)
+        usn=input("Enter your Username: ")
+        passw=input("Enter your password: ")
+        rec=[usn,passw]
+        n.writerow(rec)
+    fh.close()
+WriteCSV()
+def ReadCSV(UserName):
+    with open("C:\\Users\\LENOVO\\Desktop\\Ye walla pacca\\mydata.csv", newline="\r\n") as fh:
+        n=csv.reader(fh)
+        for r in n:
+            if r[0]==UserName:
+                print('Username:',UserName,"Password:",r[1])
+        fh.close()
+ch=input("Enter username to be searched: ")
+ReadCSV(ch)
+
+#17
+def binarysearch(ar,key):
+    low=0
+    high=len(ar)-1
+    while low<=high:
+        mid=int((low+high)/2)
+        if key==ar[mid]:
+            return mid
+        elif key<ar[mid]:
+            high=mid-1
+        else:
+            low=mid+1
+    else:
+        return -999
+ar=[12,15,21,25,28,32,33,36,43,45]
+item=int(input("Enter item to be searched:"))
+res=binarysearch(ar,item)
+if res>=0:
+    print(item,"FOUND at index",res)
+else:
+    print("Sorry!",item,"is not found")
+
+#18
+def bubbleSort(arr):
+    n = len(arr)
+    swap = False
+    for i in range(n-1):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j + 1]:
+                swap = True
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+        if not swap:
+            return
+arr = [64, 34, 25, 12, 22, 11, 90]
+
+bubbleSort(arr)
+
+print("Sorted array is:")
+for i in range(len(arr)):
+    print("% d" % arr[i], end=" ")
+
+
+#19
+def insertionsort(arr):
+    n= len(arr)
+    for i in range(1,n):
+        key=arr[i]
+        j=i-1
+        while j>=0 and key<arr[j]:
+            arr[j+1]=arr[j]
+            j-=1
+        arr[j+1]=key
+ass=[1,23,532,3,212,211]
+insertionsort(ass)
+print(ass)
+
+
+#20
+def lsearch(AR,ITEM):
+    i=0
+    while i<len(AR) and AR[i]!=ITEM:
+        i+=1
+        if AR[i]==ITEM:
+            return i
+            break
+    else:
+        return False
+l=eval(input("Enter the list"))
+a=eval(input("Enter the item to be searched: "))
+p=lsearch(l,a)
+print(p)
+
+#21
+def empty(s):
+    if len(s)==0:
+        return True
+    else:
+        return False
+def PushOn(Book,s):
+    Book.append(s)
+def Pop(Book):
+    if empty(Book)==True:
+        print("Underflow")
+    else:
+        Book.pop()
+s=["crow","bro","Maro"]
+PushOn(s,"Money")
+PushOn(s,"Monesy")
+Pop(s)
+print(s)
+
+#22
+def AddCustomer(Customer,s):
+    Customer.append(s)
+    print(Customer)
+Bills=["Billi","kutta","Mendak"]
+c="Kangaroo"
+AddCustomer(Bills,c)
+def empty(s):
+    if len(s)==0:
+        return True
+    else:
+        return False
+def RemoveCustomer(Customer,c):
+    if empty(Customer)==True:
+        print("Underflow")
+    else:
+        return Customer.pop(c)
+        
+c={1:"kaus",2:"Pause",3:"Bause"}
+d=1
+g=RemoveCustomer(c,d)
+print(g,"Removed")
+print("New dictionary",c)
