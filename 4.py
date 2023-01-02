@@ -1,5 +1,5 @@
 #Write a program that copies a text file 
-#"source.txt" onto "target.txt" barring the lines starting with “A”.
+#"source.txt" onto "target.txt" barring the lines starting with “@”.
 
 s = open("source.txt","r")
 t = open("target.txt", "w")
